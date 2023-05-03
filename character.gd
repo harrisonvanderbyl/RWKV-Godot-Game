@@ -11,6 +11,7 @@ var anitee = 0.0
 var tm = 0.0
 var timeout = 0
 var talking = false
+var npcResponding = "\n\n\n\n\n"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	tm += 0.1
@@ -18,6 +19,20 @@ func _physics_process(delta):
 	var talk = Input.is_action_just_pressed("talk")
 	var escape = Input.is_action_just_pressed("escape")
 	var enter = Input.is_action_just_pressed("enter")
+	
+	
+	
+	if((not npcResponding.ends_with("\n")) or npcResponding.length()<3):
+		npcResponding += rwkv.forward(1,0.8,0.7)
+		var children = get_parent().get_child(3).get_children()
+		print(len(children))
+		for slime in children:
+			if(slime.vis):
+				var Editor:TextEdit = slime.find_child("editor")
+				
+				slime.find_child("npcout").text = npcResponding.replace("Alice",slime.Name).replace("alice",slime.Name)
+		
+	
 	if(not talking):
 		var eventl = Input.is_action_pressed("left")
 		var evenlr = Input.is_action_just_released("left")
@@ -69,7 +84,7 @@ func _physics_process(delta):
 				Editor.grab_focus()
 				talking = true
 				rwkv.loadContext(slime.buildPrompt())
-				print(rwkv.forward(20,0.8,0.6))
+				
 	if escape and talking:
 		var children = get_parent().get_child(3).get_children()
 		print(len(children))
@@ -80,13 +95,15 @@ func _physics_process(delta):
 				talking = false
 				
 	if enter and talking:
+		npcResponding = ""
 		var children = get_parent().get_child(3).get_children()
 		print(len(children))
 		for slime in children:
 			if(slime.vis):
 				var Editor:TextEdit = slime.find_child("editor")
-				rwkv.loadContext(Editor.text+"\n\n"+slime.Ndame+":")
-				slime.find_child("npcout").text = rwkv.forward(30,0.8,0.7)
+				rwkv.loadContext("\nBob: "+Editor.text+"\n\nAlice:")
+				Editor.text = ""
+		
 				
 func _on_floor_body_entered(body):
 	onsomething = true

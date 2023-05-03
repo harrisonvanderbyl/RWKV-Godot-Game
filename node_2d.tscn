@@ -21,7 +21,7 @@ offsets = PackedFloat32Array(0.0328767, 0.50137, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.210759, 0.707085, 0.741066, 0.643137, 1, 1, 1, 0.0823529)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ev0j7"]
-offset = Vector3(0, 0, 250240)
+offset = Vector3(0, 0, 250912)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uu4xo"]
 in_3d_space = true
@@ -1801,12 +1801,15 @@ secrets = Array[String](["jumping while moving will let you jump twice as high"]
 
 [node name="NPC3" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(1029, 410)
+Name = "Bluey"
 
 [node name="NPC4" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(497, -52)
+Name = "Alfred"
 
 [node name="NPC9" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(479, -153)
+Name = "Nigel"
 
 [node name="NPC5" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(67, 306)
@@ -1817,12 +1820,15 @@ secrets = Array[String](["theres a hidden space below"])
 
 [node name="NPC8" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(-495, 206)
+Name = "Bromine"
 
 [node name="NPC6" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(298, 308)
+Name = "Zephere"
 
 [node name="NPC7" parent="NPCs" instance=ExtResource("10_urldo")]
 position = Vector2(74, 512)
+Name = "Bob"
 
 [node name="CharacterBody2D" type="RigidBody2D" parent="."]
 position = Vector2(83, 138)

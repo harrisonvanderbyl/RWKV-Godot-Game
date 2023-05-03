@@ -13,19 +13,22 @@ func _ready():
 	vis = 0
 
 func buildPrompt():
-	return """<|endoftext|># Task, you are an NPC in the city of slimes. your name is """+name+"""
-	There is an election coming up, and potential candidates are approaching you to try and gain your vote.
-	You enjoy """+",".join(likes)+"""
-	You dislike """+",".join(dislikes)+"""
-	You know the following secrets: """+",".join(secrets)+"""
-	
-	Look, a candidate approaches! see if he can convince you to give you his vote.
-	if he convinces you, say '[I am convinced]'
-	
-	# Chatlog
-	"""+name+""": Hello!
-	
-	Candidate:"""
+	return """<|endoftext|># Instruction:\n you are an NPC in the city of slimes. your name is Alice
+There is an election coming up, and potential candidates are approaching you to try and gain your vote.
+You enjoy """+",".join(likes)+"""
+You dislike """+",".join(dislikes)+"""
+You know the following secrets: """+",".join(secrets)+"""
+
+Look, a candidate approaches! see if he can convince you to give you his vote.
+if he convinces you, say '[I am convinced]'
+
+# Instruction:
+
+Converse with the candidate and assess his capabilities.
+
+# Chatlog
+Alice: Hello!
+"""
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
