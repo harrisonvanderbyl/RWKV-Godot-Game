@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2vce37c6tue1"]
+
+[sub_resource type="Gradient" id="Gradient_41dac"]
+offsets = PackedFloat32Array(0.290411, 1)
+colors = PackedColorArray(0, 0, 0, 0.435294, 0, 0.333792, 0.335099, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mc20k"]
+gradient = SubResource("Gradient_41dac")
+fill_from = Vector2(0.547009, 0.452991)
+fill_to = Vector2(0.555556, 0.0042735)
+
+[sub_resource type="Gradient" id="Gradient_tcqum"]
+offsets = PackedFloat32Array(0.290411, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.333792, 0.335099, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a3a3j"]
+gradient = SubResource("Gradient_tcqum")
+fill_from = Vector2(0.547009, 0.452991)
+fill_to = Vector2(0.555556, 0.0042735)
+
+[sub_resource type="Gradient" id="Gradient_t1bsn"]
+offsets = PackedFloat32Array(0.290411, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.333792, 0.335099, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bwpi2"]
+gradient = SubResource("Gradient_t1bsn")
+fill_from = Vector2(0.547009, 0.452991)
+fill_to = Vector2(0.555556, 0.0042735)
+
+[sub_resource type="Gradient" id="Gradient_3i67k"]
+offsets = PackedFloat32Array(0.449315, 0.589041, 0.687671)
+colors = PackedColorArray(0, 0, 0, 1, 0.0980392, 0.34902, 0, 1, 0.0509804, 0.254902, 0.258824, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0dox"]
+gradient = SubResource("Gradient_3i67k")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_0jwrs"]
+offsets = PackedFloat32Array(0.449315, 0.589041, 0.687671, 0.961644)
+colors = PackedColorArray(0, 0, 0, 1, 0.361529, 0.14316, 0.14224, 1, 0.0509804, 0.254902, 0.258824, 0, 0.0509804, 0.254902, 0.258824, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rwvpj"]
+gradient = SubResource("Gradient_0jwrs")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -63.0
+offset_top = -144.0
+offset_right = 202.0
+offset_bottom = -98.0
+texture = SubResource("GradientTexture2D_mc20k")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 202.0
+offset_top = -59.0
+offset_right = 467.0
+offset_bottom = -20.0
+rotation = 3.14137
+texture = SubResource("GradientTexture2D_mc20k")
+expand_mode = 2
+
+[node name="npcout" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -131.0
+offset_right = 185.0
+offset_bottom = -79.0
+text = "Here is an example of some text that the npc is speaking"
+
+[node name="input" type="Control" parent="."]
+visible = false
+z_index = 167
+z_as_relative = false
+anchors_preset = 0
+offset_left = -71.0
+offset_top = 65.0
+offset_right = -31.0
+offset_bottom = 105.0
+
+[node name="editor" type="TextEdit" parent="input"]
+layout_mode = 0
+offset_right = 266.0
+offset_bottom = 84.0
+placeholder_text = "Enter Text Here"
+
+[node name="TextureRect4" type="TextureRect" parent="input"]
+layout_mode = 0
+offset_left = 266.009
+offset_top = 85.0
+offset_right = 531.009
+offset_bottom = 124.0
+rotation = 3.14137
+texture = SubResource("GradientTexture2D_a3a3j")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="input"]
+layout_mode = 0
+offset_left = 1.00867
+offset_right = 266.009
+offset_bottom = 46.0
+texture = SubResource("GradientTexture2D_bwpi2")
+expand_mode = 2
+
+[node name="enter" type="TextureRect" parent="input"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 47.0
+offset_right = 279.0
+offset_bottom = 79.0
+texture = SubResource("GradientTexture2D_e0dox")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="input/enter"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 32.0
+text = "↩"
+
+[node name="esc" type="TextureRect" parent="input"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -16.0
+offset_right = 18.0
+offset_bottom = 16.0
+texture = SubResource("GradientTexture2D_rwvpj")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="input/esc"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 46.0
+offset_bottom = 48.0
+theme_override_font_sizes/normal_font_size = 21
+text = "⎋"

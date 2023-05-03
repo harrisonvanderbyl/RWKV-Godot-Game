@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp6nedojyfb5u"]
+
+[ext_resource type="SpriteFrames" uid="uid://bfhwdd2ecq5sk" path="res://ani/greenslime/greenslime.tres" id="1_7uowp"]
+[ext_resource type="Script" path="res://npc.gd" id="1_kbrot"]
+[ext_resource type="PackedScene" uid="uid://c2vce37c6tue1" path="res://text.tscn" id="3_ea53e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5wm2"]
+size = Vector2(326.531, 204.082)
+
+[sub_resource type="Gradient" id="Gradient_yurak"]
+offsets = PackedFloat32Array(0.449315, 0.589041, 0.687671)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.338811, 0.293206, 1, 0.0509804, 0.254902, 0.258824, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xd6fs"]
+gradient = SubResource("Gradient_yurak")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="NPC" type="Node2D"]
+scale = Vector2(0.245, 0.245)
+script = ExtResource("1_kbrot")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+sprite_frames = ExtResource("1_7uowp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3.89255e-06, -44.898)
+shape = SubResource("RectangleShape2D_r5wm2")
+
+[node name="textbox" parent="." instance=ExtResource("3_ea53e")]
+
+[node name="suggest" type="TextureRect" parent="textbox"]
+layout_mode = 0
+offset_left = 179.592
+offset_top = -77.551
+offset_right = 212.592
+offset_bottom = -45.551
+texture = SubResource("GradientTexture2D_xd6fs")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="textbox/suggest"]
+layout_mode = 0
+offset_left = 12.2449
+offset_top = 4.08163
+offset_right = 32.2449
+offset_bottom = 28.0817
+text = "E"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
