@@ -6,11 +6,13 @@ extends Node2D
 @export var secrets:Array[String] = []
 
 var vis = 0
+var myagent
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$textbox/npcout.text = "Hello..."
 	$AnimatedSprite2D.play("default")
 	vis = 0
+	
 
 func buildPrompt():
 	return """<|endoftext|># Instruction:\n you are an NPC in the city of slimes. your name is Alice

@@ -4,14 +4,15 @@ var onsomething = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Node2D/AnimatedSprite2D.play("default")
-	rwkv.loadModel("/media/harrison/0F8D9B194C1273DC/model.bin")
-	rwkv.loadTokenizer("/home/harrison/Desktop/rwkvstic/src/rwkvstic/agnostic/backends/cuda/cudarwkv/rwkv-cpp-cuda/include/rwkv/tokenizer/vocab/")
-	
+	rwkv.loadModel("..")
+	rwkv.loadTokenizer("..")
+var agent = null
 var anitee = 0.0
 var tm = 0.0
 var timeout = 0
 var talking = false
 var npcResponding = "\n\n\n\n\n"
+var ourslime
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	tm += 0.1
@@ -23,7 +24,7 @@ func _physics_process(delta):
 	
 	
 	if((not npcResponding.ends_with("\n")) or npcResponding.length()<3):
-		npcResponding += rwkv.forward(1,0.8,0.7)
+		npcResponding = ourslime.myagent.get_context()
 		var children = get_parent().get_child(3).get_children()
 		print(len(children))
 		for slime in children:
@@ -83,7 +84,13 @@ func _physics_process(delta):
 				var Editor:TextEdit = slime.find_child("editor")
 				Editor.grab_focus()
 				talking = true
-				rwkv.loadContext(slime.buildPrompt())
+				if (slime.myagent == null):
+					slime.myagent = rwkv.createAgent()
+					
+					slime.myagent.set_stop_sequences(["Alice","Bob","\n\n"])
+
+					slime.myagent.add_context(slime.buildPrompt())
+				ourslime = slime
 				
 	if escape and talking:
 		var children = get_parent().get_child(3).get_children()
@@ -101,8 +108,9 @@ func _physics_process(delta):
 		for slime in children:
 			if(slime.vis):
 				var Editor:TextEdit = slime.find_child("editor")
-				rwkv.loadContext("\nBob: "+Editor.text+"\n\nAlice:")
+				ourslime.myagent.add_context("\nBob: "+Editor.text+"\n\nAlice:")
 				Editor.text = ""
+				ourslime.myagent.generate(50)
 		
 				
 func _on_floor_body_entered(body):
